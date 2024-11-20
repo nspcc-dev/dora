@@ -7,20 +7,31 @@ import './NewsFeed.scss'
 const parser = new Parser()
 
 const News: React.FC = (): ReactElement => {
-  const feed: Item[] = []
-  const [items, setItems] = useState(feed)
+  const [items, setItems] = useState<Item[]>([])
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function fetchAndSetFeed(): Promise<void> {
-      const results = await parser.parseURL('https://neonewstoday.com/feed/')
-      if (results) {
-        results.items && setItems(results.items)
+      try {
+        setIsLoading(true)
+        setError(null)
+        const results = await parser.parseURL('https://neonewstoday.com/feed/')
+        if (results?.items?.length) {
+          setItems(results.items)
+        } else {
+          setError('No news items found from NNT')
+        }
+      } catch (err) {
+        setError('Unable to load news feed from NNT')
+        console.error('News feed error:', err)
+      } finally {
+        setIsLoading(false)
       }
     }
-    if (!items.length) {
-      fetchAndSetFeed()
-    }
-  }, [feed, items.length])
+
+    fetchAndSetFeed()
+  }, [])
 
   const imgTagRegex = new RegExp('<s*img[^>]*>(.*?)')
 
@@ -37,6 +48,22 @@ const News: React.FC = (): ReactElement => {
       .replace('"', '')
 
   const reducedItems = items.slice(0, 3)
+
+  if (isLoading) {
+    return (
+      <div id="NewsFeed" className="loading">
+        Loading news from NNT...
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div id="NewsFeed" className="error">
+        {error}
+      </div>
+    )
+  }
 
   return (
     <div id="NewsFeed">

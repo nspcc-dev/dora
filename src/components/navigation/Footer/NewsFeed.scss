@@ -17,4 +17,18 @@
       margin-right: 12px;
     }
   }
+
+  &.loading,
+  &.error {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &.loading {
+    color: #666;
+  }
+
+  &.error {
+    color: #ff4444;
+  }
 }
