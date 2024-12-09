@@ -8,7 +8,6 @@ import {
   convertMilliseconds,
   getDiffInSecondsFromNow,
 } from '../../utils/time'
-import { MOCK_BLOCK_LIST_DATA } from '../../utils/mockData'
 import List from '../../components/list/List'
 import { fetchBlocks } from '../../actions/blockActions'
 import { State as BlockState, Block } from '../../reducers/blockReducer'
@@ -72,7 +71,7 @@ const returnBlockListData = (
   network: string,
 ): Array<ParsedBlock> => {
   if (returnStub) {
-    return MOCK_BLOCK_LIST_DATA.map(block => mapBlockData(block))
+    return []
   } else {
     return data.map(block => mapBlockData(block))
   }
