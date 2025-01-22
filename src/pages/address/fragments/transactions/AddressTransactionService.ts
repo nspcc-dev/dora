@@ -3,7 +3,7 @@ import { store } from '../../../../store'
 import { AddressTransactionsResponse } from '@cityofzion/dora-ts/dist/interfaces/api/neo'
 
 const NeoRest = new NeoRESTApi({
-  doraUrl: 'https://dora.coz.io',
+  doraUrl: '',
   endpoint: '/api/v2/neo3',
 })
 

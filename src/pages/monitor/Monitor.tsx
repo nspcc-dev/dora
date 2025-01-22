@@ -612,7 +612,7 @@ const ListMonitor: React.FC<ListMonitor> = ({ network, protocol }) => {
   useEffect(() => {
     let socket: Socket
     if (window.location.pathname.includes(ROUTES.MONITOR.url)) {
-      socket = new Socket('wss://dora.coz.io/ws/v2/unified/network_status')
+      socket = new Socket('/ws/v2/unified/network_status')
       socket.listening<WSDoraData>(data => {
         dispatch(setNode(data))
       })

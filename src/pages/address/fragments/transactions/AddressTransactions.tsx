@@ -16,7 +16,7 @@ import {
 } from '@cityofzion/dora-ts/dist/interfaces/api/neo/interface'
 
 const NeoRest = new NeoRESTApi({
-  doraUrl: 'https://dora.coz.io',
+  doraUrl: '',
   endpoint: '/api/v2/neo3',
 })
 

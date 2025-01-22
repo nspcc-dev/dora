@@ -9,7 +9,7 @@ import { ContractResponse } from '@cityofzion/dora-ts/dist/interfaces/api/neo'
 import { State as NetworkState } from '../reducers/networkReducer'
 
 const NeoRest = new NeoRESTApi({
-  doraUrl: 'https://dora.coz.io',
+  doraUrl: '',
   endpoint: '/api/v2/neo3',
 })
 
